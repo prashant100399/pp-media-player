@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxdemo.MediaController">
+   <center>
+      <StackPane fx:id="sp" prefHeight="412.0" prefWidth="838.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <MediaView fx:id="mediaview" fitHeight="200.0" fitWidth="200.0" />
+            <ImageView fx:id="imageview" fitHeight="451.0" fitWidth="303.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT" />
+            <ImageView fx:id="imagefirst" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="textname" fill="#f2efef" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textOrigin="CENTER" StackPane.alignment="TOP_LEFT">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Text>
+         </children>
+      </StackPane>
+   </center>
+   <bottom>
+      <VBox fx:id="vbox1" prefHeight="53.0" prefWidth="823.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="23.0" prefWidth="838.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="starttime" text="00:00:00" />
+                        <Slider fx:id="seekslider" prefHeight="34.0" prefWidth="676.0" />
+                        <Label fx:id="lasttime" text="--:--:--" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="14.0" prefWidth="823.0">
+               <children>
+                  <JFXButton fx:id="playbtn" layoutX="10.0" layoutY="10.0" onAction="#playVedio" text=" ">
+                     <graphic>
+                        <MaterialDesignIconView fx:id="play_icon" glyphName="PAUSE" size="20.0" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="stopbtn" layoutX="114.0" layoutY="10.0" onAction="#stopVedio" text=" ">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="STOP" size="20" />
+                     </graphic></JFXButton>
+                  <Label fx:id="valumelbl">
+                     <graphic>
+                        <MaterialDesignIconView fx:id="icon_valume" glyphName="VOLUME_HIGH" size="20.0" />
+                     </graphic></Label>
+                  
+                  <JFXSlider fx:id="valummeslider" />
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <MenuBar prefHeight="39.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu fx:id="media_menu" mnemonicParsing="false" text="Media">
+            <items>
+              <MenuItem fx:id="open_menuitem" mnemonicParsing="false" onAction="#handleButtonAction" text="Open">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FOLDER_OPEN_ALT" size="16.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="openfile_menuitem" mnemonicParsing="false" onAction="#handleButtonAction" text="Open File....">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FOLDER_ALT" size="16.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="opendisk_menuitem" mnemonicParsing="false" text="Open Disk....">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DISK_ALERT" size="18.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="quit_menuitem" mnemonicParsing="false" onAction="#exitVedio" text="Quit">
+                     <graphic>
+                        <FontAwesomeIconView fill="#da0e0e" glyphName="POWER_OFF" size="16.0" />
+                     </graphic></MenuItem>
+            </items>
+          </Menu>
+          <Menu fx:id="playback_menu" mnemonicParsing="false" text="Playback">
+               <items>
+                  <Menu fx:id="speed_menu" mnemonicParsing="false" text="Speed">
+                    <items>
+                      <MenuItem fx:id="faster_menuitem" mnemonicParsing="false" onAction="#fasterVedio" text="Faster">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ANGLE_DOUBLE_RIGHT" size="16.0" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="fast_menuitem" mnemonicParsing="false" onAction="#fastVedio" text="Fast">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ANGLE_RIGHT" size="16.0" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="normal_menuitem" mnemonicParsing="false" onAction="#normal" text="Normal" />
+                        <MenuItem fx:id="slow_menuitem" mnemonicParsing="false" onAction="#slowVedio" text="Slow">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ANGLE_LEFT" size="16.0" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="slower_menuitem" mnemonicParsing="false" onAction="#slowerVedio" text="Slower">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="ANGLE_DOUBLE_LEFT" size="16.0" />
+                           </graphic></MenuItem>
+                    </items>
+                  </Menu>
+                  <Menu fx:id="jumpping_menu" mnemonicParsing="false" text="Jumpping">
+                    <items>
+                      <MenuItem fx:id="forword_menuitem" mnemonicParsing="false" onAction="#forwordVideo" text="Forword">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="SHARE" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="backword_menuitem" mnemonicParsing="false" onAction="#backwordVideo" text="Backword">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="REPLY" />
+                           </graphic></MenuItem>
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="play_menuitem" mnemonicParsing="false" onAction="#playVedio" text="Play">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PLAY" size="14.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="pause_menuitem" mnemonicParsing="false" onAction="#pauseVedio" text="Pause">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PAUSE" size="14.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="resume_menuitem" mnemonicParsing="false" onAction="#resumeVideo" text="Resume">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="ROTATE_LEFT" size="14.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="stop_menuitem" mnemonicParsing="false" onAction="#stopVedio" text="Stop">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="STOP" size="18.0" />
+                     </graphic></MenuItem>
+               </items>
+          </Menu>
+          <Menu fx:id="audio_menu" mnemonicParsing="false" text="Audio">
+            <items>
+              <MenuItem fx:id="increasevolume_menuitem" mnemonicParsing="false" onAction="#increaseValue" text="IncreaseVolume">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="VOLUME_UP" size="16.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="decreasevolume_menuitem" mnemonicParsing="false" onAction="#decreaseValue" text="DecreaseVolume">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="VOLUME_DOWN" size="16.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="mute_menuitem" mnemonicParsing="false" onAction="#muteVolume" text="Mute">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VOLUME_OFF" size="16.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="unmute_menuitem" mnemonicParsing="false" onAction="#unmuteVolume" text="Unmute">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="VOLUME_OFF" size="16.0" />
+                     </graphic></MenuItem>
+            </items>
+          </Menu>
+            <Menu fx:id="video_menu" mnemonicParsing="false" text="Video">
+              <items>
+                <MenuItem fx:id="openNewWindow_menuitem" mnemonicParsing="false" onAction="#openNewWindow" text="Open New Window" />
+                  <MenuItem fx:id="background_menuitem" mnemonicParsing="false" text="Background" />
+                  <CheckMenuItem fx:id="alwaysfitwindow_menuitem" mnemonicParsing="false" text="Always Fit Window" />
+              </items>
+            </Menu>
+            <Menu fx:id="help_menu" mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem fx:id="help_menuitem" mnemonicParsing="false" text="Help">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="QUESTION_CIRCLE" size="14.0" />
+                     </graphic></MenuItem>
+                  <MenuItem fx:id="about_menuitem" mnemonicParsing="false" onAction="#aboutAuther" text="About">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="INFO_CIRCLE" size="14.0" />
+                     </graphic></MenuItem>
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
